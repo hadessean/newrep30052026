@@ -6,6 +6,9 @@ on:
       - '**'        # Trigger on push to any branch
       - '!develop'  # Except develop itself
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 jobs:
   create-pull-request:
     runs-on: ubuntu-latest
@@ -18,7 +21,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v6
+        uses: peter-evans/create-pull-request@v7
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           base: develop
