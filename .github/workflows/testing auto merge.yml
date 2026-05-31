@@ -1,0 +1,27 @@
+name: Auto Sync Branches
+
+on:
+  push:
+    branches:
+      - online-branch
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - name: Configure Git
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+
+      - name: Merge oneline-branch into develop
+        run: |
+          git checkout develop
+          git merge origin/oneline-branch --no-edit
+          git push origin develop
