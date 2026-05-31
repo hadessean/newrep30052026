@@ -22,6 +22,6 @@ jobs:
 
       - name: Merge oneline-branch into develop
         run: |
-          git checkout develop
+          git checkout Develop
           git merge origin/oneline-branch --no-edit
-          git push origin develop
+          git push origin Develop
